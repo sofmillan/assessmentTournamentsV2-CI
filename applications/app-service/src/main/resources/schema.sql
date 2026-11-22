@@ -22,3 +22,29 @@ CREATE TABLE tournaments (
                              is_free BOOLEAN,
                              CONSTRAINT fk_tournament_category FOREIGN KEY (category_id) REFERENCES category(id)
 );
+
+INSERT INTO category (id, name, capacity)
+VALUES (1, 'Regional Championship', 100);
+
+INSERT INTO tournaments (
+    description,
+    name,
+    category_id,
+    start_date,
+    end_date,
+    user_id,
+    ticket_price,
+    remaining_capacity,
+    is_free
+)
+VALUES (
+    'Annual regional tournament open to registered competitors',
+    'Spring Cup 2027',
+    1,
+    '2027-04-10',
+    '2027-04-12',
+    'user-123',
+    25.00,
+    100,
+    FALSE
+);
