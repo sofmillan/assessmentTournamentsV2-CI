@@ -13,14 +13,11 @@ import reactor.core.publisher.Mono;
 public class RestConsumer implements PaymentGateway{
     private final WebClient client;
     private final ObjectMapper mapper;
-    private final String postmanApiKey;
 
     public RestConsumer(WebClient client,
-                        ObjectMapper mapper,
-                        @Value("${adapter.restconsumer.apikey}") String postmanApiKey) {
+                        ObjectMapper mapper) {
         this.client = client;
         this.mapper = mapper;
-        this.postmanApiKey = postmanApiKey;
     }
 
     @Override
@@ -28,7 +25,6 @@ public class RestConsumer implements PaymentGateway{
         PaymentRequest request = mapper.map(purchaseDetails, PaymentRequest.class);
         Mono<PaymentResponse> response = client.post()
                 .uri("/pay")
-                .header("x-api-key", postmanApiKey)
                 .body(Mono.just(request), PaymentRequest.class)
                 .retrieve()
                 .bodyToMono(PaymentResponse.class);

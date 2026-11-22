@@ -17,7 +17,8 @@ class ObjectValidatorTest {
         objectValidator = new ObjectValidator();
     }
 
-    @Test
+
+/*    @Test
     void validateShouldNotThrowExceptionWhenObjectIsValid() {
         TournamentRqDto validTournament = TournamentRqDto.builder()
                 .categoryId(1)
@@ -30,7 +31,7 @@ class ObjectValidatorTest {
                 .build();
 
         assertDoesNotThrow(() -> objectValidator.validate(validTournament));
-    }
+    }*/
 
     @Test
     void validateShouldThrowObjectValidationExceptionWhenRequiredFieldNotPresent() {

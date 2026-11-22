@@ -11,7 +11,6 @@ import co.com.assessment.model.PurchaseDetails;
 import co.com.assessment.model.Ticket;
 import co.com.assessment.model.Tournament;
 import co.com.assessment.model.TournamentMetrics;
-import co.com.assessment.tokenresolver.JwtResolver;
 import co.com.assessment.usecase.tournaments.TicketUseCase;
 import co.com.assessment.usecase.tournaments.TournamentUseCase;
 import org.junit.jupiter.api.BeforeEach;

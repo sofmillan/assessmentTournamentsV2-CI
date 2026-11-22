@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cidb
+      MYSQL_USER: ciuser
+      MYSQL_PASSWORD: cipassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  spring-app:
+    build: 
+      context: ./deployment
+      dockerfile: Dockerfile
+    container_name: spring-boot-container
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=r2dbc:mysql://mysql-db:3306/cidb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=ciuser
+      - SPRING_DATASOURCE_PASSWORD=cipassword
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+
+volumes:
+  mysql_data:
+
+networks:
+  app-net:
+    driver: bridge

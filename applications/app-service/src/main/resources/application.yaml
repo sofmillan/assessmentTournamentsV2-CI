@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
   application:
     name: "TournamentsProject"
   devtools:
@@ -12,9 +16,9 @@ spring:
   profiles:
     include: null
   r2dbc:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_URL:r2dbc:mysql://mysql-db:3306/mydb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:springuser}
+    password: ${DB_PASSWORD:springpassword}
 management:
   endpoints:
     web:
@@ -29,12 +33,7 @@ management:
       enabled: true
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
-aws:
-  cognito:
-    issuer: ${ISSUER}
-    jwksUrl: ${JWKS_URL}
 adapter:
   restconsumer:
-    url: ${PAYMENT_API_URL}
-    apikey: ${POSTMAN_APIKEY}
+    url: ${PAYMENT_API_URL:http://localhost:8080}
 
