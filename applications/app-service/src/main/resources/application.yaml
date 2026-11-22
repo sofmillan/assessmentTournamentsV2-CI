@@ -17,8 +17,8 @@ spring:
     include: null
   r2dbc:
     url: ${DB_URL:r2dbc:mysql://mysql-db:3306/mydb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:springuser}
-    password: ${DB_PASSWORD:springpassword}
+    username: ${DB_USERNAME:ciuser}
+    password: ${DB_PASSWORD:cipassword}
 management:
   endpoints:
     web:
