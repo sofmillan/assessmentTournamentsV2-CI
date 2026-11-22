@@ -27,6 +27,7 @@ INSERT INTO category (id, name, capacity)
 VALUES (1, 'Regional Championship', 100);
 
 INSERT INTO tournaments (
+    id,
     description,
     name,
     category_id,
@@ -38,6 +39,7 @@ INSERT INTO tournaments (
     is_free
 )
 VALUES (
+    1,
     'Annual regional tournament open to registered competitors',
     'Spring Cup 2027',
     1,
