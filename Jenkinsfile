@@ -8,9 +8,8 @@ pipeline {
             }
         }
         
-        stage('Build BootJar') {
+        stage('Build bootJar') {
             steps {
-                // For a multi-module project, use ':your-app-module:bootJar' (or './gradlew bootJar' for root/single-module)
                 sh '''
                     chmod +x gradlew
                     ./gradlew :app:bootJar
@@ -18,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Move Artifact') {
+        stage('Move jar file') {
             steps {
                 sh '''
                    cp applications/app-service/build/libs/TournamentsProject.jar deployment/
@@ -26,22 +25,21 @@ pipeline {
             }
         }
 
-        stage('Start Compose Stack') {
+        stage('Start compose') {
             steps {
-                // Adjust -f path if your compose file is in a subdirectory, e.g. compose/docker-compose.yml
                 sh 'docker compose down -v'
                 sh 'docker compose up -d --build'
             }
         }
 
-        stage('Check Services') {
+        stage('Check containers') {
             steps {
-                sleep 25
+                sleep 20
                 sh 'docker compose ps'
             }
         }
         
-        stage('Test HTTP POST') {
+        stage('Test HTTP GET') {
             steps {
                 sleep 10
                 sh '''
@@ -61,7 +59,6 @@ pipeline {
 
     post {
         always {
-            // Optional: tear down containers/networks after test runs
             sh 'docker compose down -v --remove-orphans || true'
         }
     }
