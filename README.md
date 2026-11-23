@@ -46,8 +46,9 @@ Este módulo es el más externo de la arquitectura, es el encargado de ensamblar
 
 **Los beans de los casos de uso se disponibilizan automaticamente gracias a un '@ComponentScan' ubicado en esta capa.**
 
+# Antecedentes del proyecto
 
-Este proyecto contiene un archivo docker-compose.yaml que crea dos contenedores de docker capaces de comunicarse entre sí a través de una red: mysql-container, que contiene una base de datos Mysql y spring-boot-container, que ejecuta un proyecto de springboot diseñado para la gestión de torneos.
+Este proyecto contiene un archivo docker-compose.yaml que crea dos contenedores de docker capaces de comunicarse entre sí a través de una red: mysql-container, que contiene una base de datos Mysql y spring-boot-container, que ejecuta un proyecto de spring webflux diseñado para la gestión de torneos y que usa arquitectura limpia
 Para levantar los contenedores se utiliza el comando docker compose up -d --build
 
 Jenkins se puede utilizar de manera local a través de la imagen base jenkins:lts
