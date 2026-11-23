@@ -62,18 +62,7 @@ public class Handler {
                 .map(tournamentList -> TournamentListRsDto.builder().tournaments(tournamentList).build())
                 .flatMap(this::buildResponse);
     }
-/*
-    public Mono<ServerResponse> listenPOSTPurchaseTicket(ServerRequest serverRequest) {
-        String userId = this.getUser(serverRequest);
 
-        return serverRequest.bodyToMono(PurchaseTicketRqDto.class)
-                .switchIfEmpty(Mono.error(() -> new BusinessException(BusinessErrorMessage.INVALID_REQUEST)))
-                .doOnNext(objectValidator::validate)
-                .map(rqDto -> objectMapper.map(rqDto, PurchaseDetails.class))
-                .flatMap(details -> ticketUseCase.purchaseTicket(details, userId))
-                .map(ticket -> objectMapper.map(ticket, TicketRsDto.class))
-                .flatMap(this::buildResponse);
-    }*/
 
     public Mono<ServerResponse> listenGETtournamentMetrics(ServerRequest serverRequest){
         Integer id = Integer.valueOf(serverRequest.pathVariable("id"));
