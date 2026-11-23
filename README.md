@@ -45,3 +45,9 @@ Los entry points representan los puntos de entrada de la aplicación o el inicio
 Este módulo es el más externo de la arquitectura, es el encargado de ensamblar los distintos módulos, resolver las dependencias y crear los beans de los casos de use (UseCases) de forma automática, inyectando en éstos instancias concretas de las dependencias declaradas. Además inicia la aplicación (es el único módulo del proyecto donde encontraremos la función “public static void main(String[] args)”.
 
 **Los beans de los casos de uso se disponibilizan automaticamente gracias a un '@ComponentScan' ubicado en esta capa.**
+
+
+Este proyecto contiene un archivo docker-compose.yaml que crea dos contenedores de docker capaces de comunicarse entre sí a través de una red: mysql-container, que contiene una base de datos Mysql y spring-boot-container, que ejecuta un proyecto de springboot diseñado para la gestión de torneos.
+Para levantar los contenedores se utiliza el comando docker compose up -d --build
+
+Jenkins se puede utilizar de manera local a través de la imagen base jenkins:lts
