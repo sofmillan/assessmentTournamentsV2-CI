@@ -30,9 +30,9 @@ services:
       mysql-db:
         condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=r2dbc:mysql://mysql-db:3306/cidb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=ciuser
-      - SPRING_DATASOURCE_PASSWORD=cipassword
+      - SPRING_R2DBC_URL=${MYSQL_URL}
+      - SPRING_R2DBC_USERNAME=${MYSQL_USER}
+      - SPRING_R2DBC_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - "8081:8081"
     networks:
