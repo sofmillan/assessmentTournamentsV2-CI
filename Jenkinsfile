@@ -44,6 +44,7 @@ pipeline {
             steps {
                 sleep 10
                 sh '''
+                    echo "Test"
                     STATUS=$(curl -sS -o /tmp/response.json -w "%{http_code}" \
                       -X GET "http://host.docker.internal:8081/events/tournaments/1" \
                       -H "Content-Type: application/json")
