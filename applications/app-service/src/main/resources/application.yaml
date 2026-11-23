@@ -16,9 +16,9 @@ spring:
   profiles:
     include: null
   r2dbc:
-    url: ${DB_URL:r2dbc:mysql://mysql-db:3306/cidb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:ciuser}
-    password: ${DB_PASSWORD:cipassword}
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
 management:
   endpoints:
     web:
