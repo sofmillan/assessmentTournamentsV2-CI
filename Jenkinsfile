@@ -11,6 +11,7 @@ pipeline {
         stage('Build bootJar') {
             steps {
                 sh '''
+                    echo "Build jar"
                     chmod +x gradlew
                     ./gradlew :app:bootJar
                 '''
